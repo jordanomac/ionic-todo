@@ -10,10 +10,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var ionic_angular_1 = require('ionic-angular');
 var add_item_1 = require('../add-item/add-item');
+var item_detail_1 = require('../item-detail/item-detail');
+var data_1 = require('../../providers/data/data');
 var HomePage = (function () {
-    function HomePage(nav) {
+    function HomePage(nav, dataService) {
+        var _this = this;
         this.nav = nav;
+        this.dataService = dataService;
         this.items = [];
+        this.dataService.getData().then(function (todos) {
+            if (todos) {
+                _this.items = JSON.parse(todos);
+            }
+        });
     }
     HomePage.prototype.addItem = function () {
         var _this = this;
@@ -27,14 +36,18 @@ var HomePage = (function () {
     };
     HomePage.prototype.saveItem = function (item) {
         this.items.push(item);
+        this.dataService.save(this.items);
     };
     HomePage.prototype.viewItem = function (item) {
+        this.nav.push(item_detail_1.ItemDetailPage, {
+            item: item
+        });
     };
     HomePage = __decorate([
         core_1.Component({
             templateUrl: 'build/pages/home/home.html',
         }), 
-        __metadata('design:paramtypes', [ionic_angular_1.NavController])
+        __metadata('design:paramtypes', [ionic_angular_1.NavController, data_1.Data])
     ], HomePage);
     return HomePage;
 })();

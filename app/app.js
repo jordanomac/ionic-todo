@@ -11,6 +11,7 @@ var core_1 = require('@angular/core');
 var ionic_angular_1 = require('ionic-angular');
 var ionic_native_1 = require('ionic-native');
 var home_1 = require('./pages/home/home');
+var data_1 = require('./providers/data/data');
 var MyApp = (function () {
     function MyApp(platform) {
         this.rootPage = home_1.HomePage;
@@ -27,4 +28,4 @@ var MyApp = (function () {
     return MyApp;
 })();
 exports.MyApp = MyApp;
-ionic_angular_1.ionicBootstrap(MyApp);
+ionic_angular_1.ionicBootstrap(MyApp, [data_1.Data]);
