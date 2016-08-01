@@ -11,11 +11,11 @@ export class HomePage {
 
   private items = [];
 
-  constructor(private nav: NavController, private dataService: Data) {
+  constructor(private nav:NavController, private dataService:Data) {
 
     this.dataService.getData().then((todos) => {
 
-      if(todos){
+      if (todos) {
         this.items = JSON.parse(todos);
       }
 
@@ -23,13 +23,13 @@ export class HomePage {
 
   }
 
-  addItem(){
+  addItem() {
 
     let addModal = Modal.create(AddItemPage);
 
     addModal.onDismiss((item) => {
 
-      if(item){
+      if (item) {
         this.saveItem(item);
       }
 
@@ -39,15 +39,20 @@ export class HomePage {
 
   }
 
-  saveItem(item){
+  saveItem(item) {
     this.items.push(item);
     this.dataService.save(this.items);
   }
 
-  viewItem(item){
+  viewItem(item) {
     this.nav.push(ItemDetailPage, {
       item: item
     });
   }
+
+  deleteItem(item){
+
+  }
+
 
 }

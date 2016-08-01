@@ -43,6 +43,8 @@ var HomePage = (function () {
             item: item
         });
     };
+    HomePage.prototype.deleteItem = function (item) {
+    };
     HomePage = __decorate([
         core_1.Component({
             templateUrl: 'build/pages/home/home.html',

@@ -19,4 +19,8 @@ export class Data {
     let newData = JSON.stringify(data);
     this.storage.set('todos', newData);
   }
+  delete(data){
+    let deleteData = JSON.stringify(data);
+    this.storage.deleteItem(deleteData);
+  }
 }
