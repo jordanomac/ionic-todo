@@ -50,8 +50,9 @@ export class HomePage {
     });
   }
 
-  deleteItem(item){
-
+  deleteItem(item) {
+    this.items.pop();
+    this.dataService.deleteData(item);
   }
 
 

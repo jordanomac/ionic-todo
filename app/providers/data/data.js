@@ -20,9 +20,9 @@ var Data = (function () {
         var newData = JSON.stringify(data);
         this.storage.set('todos', newData);
     };
-    Data.prototype.delete = function (data) {
-        var deleteData = JSON.stringify(data);
-        this.storage.deleteItem(deleteData);
+    Data.prototype.deleteData = function (data) {
+        var temp = null;
+        this.storage.set('todos', temp);
     };
     Data = __decorate([
         core_1.Injectable(), 

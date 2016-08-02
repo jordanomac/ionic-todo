@@ -44,6 +44,8 @@ var HomePage = (function () {
         });
     };
     HomePage.prototype.deleteItem = function (item) {
+        this.items.pop();
+        this.dataService.deleteData(item);
     };
     HomePage = __decorate([
         core_1.Component({
