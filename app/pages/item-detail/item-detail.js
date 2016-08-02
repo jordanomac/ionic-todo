@@ -9,17 +9,60 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var ionic_angular_1 = require('ionic-angular');
+var ionic_angular_2 = require('ionic-angular');
 var ItemDetailPage = (function () {
-    function ItemDetailPage(navParams) {
+    function ItemDetailPage(platform, nav, navParams) {
+        this.platform = platform;
+        this.nav = nav;
         this.navParams = navParams;
         this.title = this.navParams.get('item').title;
         this.description = this.navParams.get('item').description;
     }
+    //doesn't work
+    ItemDetailPage.prototype.presentActionSheet = function () {
+        console.log('event fired');
+        var actionSheet = ionic_angular_2.ActionSheet.create({
+            title: 'Task Action Sheet',
+            cssClass: 'item-detail.scss',
+            buttons: [
+                {
+                    text: 'Share',
+                    icon: !this.platform.is('ios') ? 'share' : null,
+                    handler: function () {
+                        console.log('Share clicked');
+                    }
+                },
+                {
+                    text: 'Play',
+                    icon: !this.platform.is('ios') ? 'arrow-dropright-circle' : null,
+                    handler: function () {
+                        console.log('Play clicked');
+                    }
+                },
+                {
+                    text: 'Favorite',
+                    icon: !this.platform.is('ios') ? 'heart-outline' : null,
+                    handler: function () {
+                        console.log('Favorite clicked');
+                    }
+                },
+                {
+                    text: 'Cancel',
+                    role: 'cancel',
+                    icon: !this.platform.is('ios') ? 'close' : null,
+                    handler: function () {
+                        console.log('Cancel clicked');
+                    }
+                }
+            ]
+        });
+        this.nav.present(actionSheet);
+    };
     ItemDetailPage = __decorate([
         core_1.Component({
             templateUrl: 'build/pages/item-detail/item-detail.html',
         }), 
-        __metadata('design:paramtypes', [ionic_angular_1.NavParams])
+        __metadata('design:paramtypes', [ionic_angular_2.Platform, ionic_angular_2.NavController, ionic_angular_1.NavParams])
     ], ItemDetailPage);
     return ItemDetailPage;
 })();
